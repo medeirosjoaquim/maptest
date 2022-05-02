@@ -19,11 +19,18 @@ export const TextMarker = ({ closeCallback }) => {
     closeCallback()
 
   }
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      inputRef.current.blur()
+    }
+  }
+
   return (
     <div className="text_marker__container"
       onClick={() => handleFocus()}
       onBlur={() => setEditmode(false)}>
       {editmode && <input value={text}
+        onKeyDown={handleKeyDown}
         ref={inputRef}
         onChange={e => handleChange(e.target.value)}
       />}

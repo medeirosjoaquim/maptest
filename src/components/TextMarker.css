@@ -1,11 +1,11 @@
 .text_marker__container {
   position: relative;
-  height: 40px;
+  min-height: 30px;
   min-width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ddd;
+  background-color: rgb(255, 157, 157);
 }
 
 .text_marker__container input {
@@ -16,6 +16,10 @@
 .text_marker__text {
   font-size: 14px;
   font-weight: bold;
+}
+
+.text_marker__text:hover {
+  cursor: text;
 }
 
 .close {
