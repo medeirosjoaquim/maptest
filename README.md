@@ -5,8 +5,8 @@ https://helpful-jelly-1d374a.netlify.app/
 
 ### Sample
 
-<img  height="350" src="./mapcreator.png"/>
-<video height="350" src="./video.mp4"
+[![IMAGE ALT TEXT](./mapcreator.png)](https://youtu.be/GLrcuOwRhLc "Demo")
+
 
 
 ### Todo/known issues 
