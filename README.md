@@ -2,18 +2,11 @@
 
 https://helpful-jelly-1d374a.netlify.app/
 
-### Features 
-
-- Adding icons to the map
-- Adding texts to the map
-- Deleting manually placed elements on the map
-- Hiding and showing map layers
-- Adjusting the map height/width in a given unit
 
 ### Sample
 
 <img  height="350" src="./mapcreator.png"/>
-
+<video height="350" src="./video.mp4"
 
 
 ### Todo/known issues 
