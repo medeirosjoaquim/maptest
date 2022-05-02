@@ -6,7 +6,7 @@ https://helpful-jelly-1d374a.netlify.app/
 ### Sample
 
 <img  height="350" src="./mapcreator.png"/>
-<video height="350" src="./video.mp4"
+<video height="350" src="./video.mp4"/>
 
 
 ### Todo/known issues 
