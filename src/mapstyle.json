@@ -1,5 +1,6 @@
 {
   "version": 8,
+  "preserveDrawingBuffer": true,
   "name": "Basic",
   "metadata": {
     "mapbox:autocomposite": true

@@ -2,11 +2,13 @@ import './App.css';
 import AddElement from './components/AddElement';
 import MapLayers from './components/MapLayers';
 import MapDisplay from './components/MapDisplay/MapDisplay';
-import { BiPlus, BiListUl } from 'react-icons/bi'
+import { BiPlus } from 'react-icons/bi'
 import { AiFillEye } from 'react-icons/ai'
 import { useState } from 'react';
-import { currentSvgAtom } from './atoms';
+import { currentSvgAtom, mapRefAtom } from './atoms';
 import { useAtom } from 'jotai';
+import { BsPrinter } from 'react-icons/bs';
+import html2canvas from 'html2canvas';
 
 function App() {
 
@@ -23,6 +25,7 @@ function App() {
   const [mapWidth, setMapWidth] = useState(900)
   const [mapHeight, setMapHeight] = useState(700)
   const [currentSvg, setCurrentSvg] = useAtom(currentSvgAtom)
+  const [mapRef] = useAtom(mapRefAtom)
 
   const [showControl, setShowControl] = useState(false)
   const [control, setControl] = useState(false)
@@ -43,7 +46,23 @@ function App() {
       setShowControl(true)
     }
   }
+  const handleExport = () => {
+    html2canvas(document.querySelector(".mapboxgl-map")).then(canvas => {
+      const dataURL = canvas.toDataURL()
+      const link = document.createElement("a");
+      link.download = "mymap.png";
+      link.href = dataURL;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    // if (img) {
+    //   window.saveAs();
 
+    // }
+    // const dataURL = mapRef.getCanvas().toDataURL()
+
+  }
 
   return (
     <div className="app">
@@ -75,6 +94,7 @@ function App() {
         <div className="menu">
           <div className="menu__selector" onClick={() => handleMenuClick("addElement")}><BiPlus size={40} /></div>
           <div className="menu__selector" onClick={() => handleMenuClick("mapLayers")}><AiFillEye size={40} /></div>
+          <div className="menu__selector" onClick={() => handleExport()}><BsPrinter size={40} /></div>
         </div>
         {showControl &&
           <div className="control"

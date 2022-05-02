@@ -34,6 +34,11 @@ const MapDisplay = ({ width, height, currentIcon }) => {
       const style = { ...defaultMapStyle, layers: visibleLayers }
       setMapStyle(style)
     }
+    setTimeout(() => {
+      if (mapRef.current) {
+        setMapRef(mapRef.current)
+      }
+    }, 200);
   }, [hiddenLayers])
 
   return (
@@ -48,7 +53,9 @@ const MapDisplay = ({ width, height, currentIcon }) => {
           initialViewState={{
             longitude: -122.4,
             latitude: 37.8,
-            zoom: 7
+            zoom: 7,
+            preserveDrawingBuffer: true
+
           }}
           mapStyle={mapStyle}
         >
