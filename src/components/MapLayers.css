@@ -1,0 +1,7 @@
+.layer__item {
+  cursor: pointer;
+}
+
+.layer__item:hover {
+  background-color: #aaa;
+}

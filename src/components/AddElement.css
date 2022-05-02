@@ -1,0 +1,40 @@
+.select_type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.element__type {
+  cursor: pointer;
+  margin-right: 4px;
+  flex: 1;
+  padding: 4px;
+  text-align: center;
+  background-color: aliceblue;
+  border-radius: 4px;
+}
+
+.add__text {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add__icon {
+  width: 140px;
+  padding: 8px;
+}
+
+.add__icon svg {
+  margin: 4px;
+}
+
+.icon__item {
+  cursor: pointer;
+}
+
+.selected svg {
+  border: 2px solid #fafafa;
+}

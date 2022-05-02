@@ -1,0 +1,38 @@
+.text_marker__container {
+  position: relative;
+  height: 40px;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+}
+
+.text_marker__container input {
+  width: 90%;
+  padding: 0 8px;
+}
+
+.text_marker__text {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.close {
+  position: absolute;
+  background-color: #fafafa;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  top: -12px;
+  right: -8px;
+  display: flex;
+  font-weight: bold;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.close:hover {
+  border: 1px solid red;
+}

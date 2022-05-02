@@ -1,0 +1,30 @@
+.map-display__scrollable {
+  height: 800px;
+  width: 90%;
+  overflow: auto;
+  margin: 0 auto;
+}
+
+.wrapper {
+  margin: auto;
+}
+
+.marker__item {
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+}
+
+.popup__item {
+  width: 180px;
+}
+
+.popup__item_container {
+  display: flex;
+  margin-top: 12px;
+}
+
+.popup__item_option {
+  width: 50px;
+  flex: 1;
+}

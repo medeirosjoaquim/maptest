@@ -1,0 +1,14 @@
+.field {
+  margin-bottom: 32px;
+}
+
+.field input {
+  width: 80px;
+  font-size: 16px;
+}
+
+.label {
+  color: #fafafa;
+  font-weight: bold;
+  padding: 4px 0;
+}
