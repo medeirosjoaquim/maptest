@@ -12,7 +12,9 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obmJveGNvZGVzIiwiYSI6ImNqaHR2bmVlajBpNHAzc
 
 const MapDisplay = ({ width, height, currentIcon }) => {
   // const mapRef = useRef()
-  let mapRef
+  const mapContainer = useRef(null);
+  const mapRef = useRef(null);
+
   const [markers, setMarkers] = useState([])
   const [popup, setPopup] = useState(null)
   const [elementType] = useAtom(elementTypeAtom)
@@ -23,6 +25,8 @@ const MapDisplay = ({ width, height, currentIcon }) => {
   const defaultMapStyle = MAP_STYLE
   const defaultLayers = defaultMapStyle.layers
   const [mapStyle, setMapStyle] = useState(defaultMapStyle)
+    useResizeMap(width, height, mapRef)
+
   // useCreateMarker(mapRef, elementType,
   //   currentIcon, setMarkers, setPopup, addNew)
   const removeMarker = id => {
@@ -35,29 +39,34 @@ const MapDisplay = ({ width, height, currentIcon }) => {
       const style = { ...defaultMapStyle, layers: visibleLayers }
       setMapStyle(style)
     }
-    setTimeout(() => {
-      if (mapRef.current) {
-        setMapRef(mapRef.current)
-      }
-    }, 200);
+    // setTimeout(() => {
+    //   if (mapRef.current) {
+    //     setMapRef(mapRef.current)
+    //   }
+    // }, 200);
 
-
-     mapRef = new mapboxgl.Map({
-      container: "mymap",
-      style: "mapbox://styles/mapbox/light-v9",
-      zoom: 12,
-      center: [-122.447303, 37.753574]
+    if (mapRef.current) return; // initialize map only once
+    mapRef.current = new mapboxgl.Map({
+    container: mapContainer.current,
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-50, -25],
+    zoom: 12
     });
+    console.log(mapRef.current)
+   
+
 // process.env.REACT_APP_FIREBASE_API_KEY,
   }, [hiddenLayers])
 
   return (
     <div className="map-display__scrollable">
+    
       <div className="wrapper"
         style={{
           width: Number(width), height: Number(height)
         }}>
-              <div id="mymap"  ref={mapRef} style={{ height: "100%", width: "100%" }}></div>
+      
+              <div id="mymap"  ref={mapContainer} style={{ height: "100%", width: "100%" }}></div>
 
         {/* <Map
           ref={mapRef}
@@ -85,6 +94,17 @@ const MapDisplay = ({ width, height, currentIcon }) => {
           </Popup>}
         </Map> */}
       </div>
+      <button onClick={() => console.log( mapRef.current.getStyle().layers)}>list</button>
+      <button onClick={() =>  mapRef.current.setLayoutProperty(
+      "land",
+      'visibility',
+      'none'
+      )}>remove</button>
+         <button onClick={() =>  mapRef.current.setLayoutProperty(
+      "land",
+      'visibility',
+      'visible'
+      )}>add</button>
     </div >
   )
 }
