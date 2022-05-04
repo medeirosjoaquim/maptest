@@ -1,16 +1,18 @@
 import { useAtom } from 'jotai'
+import mapboxgl from 'mapbox-gl'
 import React, { useEffect, useRef, useState } from 'react'
 import Map, { Popup } from 'react-map-gl'
 import { addNewAtom, elementTypeAtom, layerVisibilityAtom, mapRefAtom } from '../../atoms'
 import useCreateMarker from '../../hooks/useCreateMarker'
 import useResizeMap from '../../hooks/useResizeMap'
 import MAP_STYLE from '../../mapstyle.json';
-
-
 import './MapDisplay.css'
 
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obmJveGNvZGVzIiwiYSI6ImNqaHR2bmVlajBpNHAzcXBkMDB3NnFqa2QifQ.bC7SkLPUeaTA2MnNWW2-gw';
+
 const MapDisplay = ({ width, height, currentIcon }) => {
-  const mapRef = useRef()
+  // const mapRef = useRef()
+  let mapRef
   const [markers, setMarkers] = useState([])
   const [popup, setPopup] = useState(null)
   const [elementType] = useAtom(elementTypeAtom)
@@ -21,9 +23,8 @@ const MapDisplay = ({ width, height, currentIcon }) => {
   const defaultMapStyle = MAP_STYLE
   const defaultLayers = defaultMapStyle.layers
   const [mapStyle, setMapStyle] = useState(defaultMapStyle)
-  useResizeMap(width, height, mapRef)
-  useCreateMarker(mapRef, elementType,
-    currentIcon, setMarkers, setPopup, addNew)
+  // useCreateMarker(mapRef, elementType,
+  //   currentIcon, setMarkers, setPopup, addNew)
   const removeMarker = id => {
     setMarkers(prev => [...prev.filter(item => item.id !== id)])
     setPopup(null)
@@ -39,6 +40,15 @@ const MapDisplay = ({ width, height, currentIcon }) => {
         setMapRef(mapRef.current)
       }
     }, 200);
+
+
+     mapRef = new mapboxgl.Map({
+      container: "mymap",
+      style: "mapbox://styles/mapbox/light-v9",
+      zoom: 12,
+      center: [-122.447303, 37.753574]
+    });
+// process.env.REACT_APP_FIREBASE_API_KEY,
   }, [hiddenLayers])
 
   return (
@@ -47,7 +57,9 @@ const MapDisplay = ({ width, height, currentIcon }) => {
         style={{
           width: Number(width), height: Number(height)
         }}>
-        <Map
+              <div id="mymap"  ref={mapRef} style={{ height: "100%", width: "100%" }}></div>
+
+        {/* <Map
           ref={mapRef}
           trackResize={true}
           initialViewState={{
@@ -71,7 +83,7 @@ const MapDisplay = ({ width, height, currentIcon }) => {
               <div className="popup__item_option"><button onClick={() => setPopup(null)}>Cancel</button></div>
             </div>
           </Popup>}
-        </Map>
+        </Map> */}
       </div>
     </div >
   )
