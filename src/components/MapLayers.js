@@ -20,9 +20,9 @@ const MapLayers = React.memo(() => {
       'visibility'
     );
     if (visibility === 'visible') {
-      map.setLayoutProperty(layer, 'visibility', 'none');
+      map.getMap().setLayoutProperty(layer, 'visibility', 'none');
     } else {
-      map.setLayoutProperty(
+      map.getMap().setLayoutProperty(
         layer,
         'visibility',
         'visible'
