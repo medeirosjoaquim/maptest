@@ -1,12 +1,10 @@
 import { useAtom } from 'jotai'
 import React, { useEffect, useRef, useState } from 'react'
 import Map, { Popup } from 'react-map-gl'
-import { addNewAtom, elementTypeAtom, layerVisibilityAtom, mapRefAtom } from '../../atoms'
+import { addNewAtom, elementTypeAtom, mapRefAtom } from '../../atoms'
 import useCreateMarker from '../../hooks/useCreateMarker'
 import useResizeMap from '../../hooks/useResizeMap'
 import MAP_STYLE from '../../mapstyle.json';
-
-
 import './MapDisplay.css'
 
 const MapDisplay = ({ width, height, currentIcon }) => {
@@ -15,12 +13,10 @@ const MapDisplay = ({ width, height, currentIcon }) => {
   const [popup, setPopup] = useState(null)
   const [elementType] = useAtom(elementTypeAtom)
   const [, setMapRef] = useAtom(mapRefAtom)
-  const [hiddenLayers] = useAtom(layerVisibilityAtom)
 
   const [addNew] = useAtom(addNewAtom)
   const defaultMapStyle = MAP_STYLE
-  const defaultLayers = defaultMapStyle.layers
-  const [mapStyle, setMapStyle] = useState(defaultMapStyle)
+  const [mapStyle] = useState(defaultMapStyle)
   useResizeMap(width, height, mapRef)
   useCreateMarker(mapRef, elementType,
     currentIcon, setMarkers, setPopup, addNew)
@@ -29,17 +25,12 @@ const MapDisplay = ({ width, height, currentIcon }) => {
     setPopup(null)
   }
   useEffect(() => {
-    // if (hiddenLayers) {
-    //   const visibleLayers = defaultLayers.filter(layer => !hiddenLayers.includes(layer.id))
-    //   const style = { ...defaultMapStyle, layers: visibleLayers }
-    //   setMapStyle(style)
-    // }
     setTimeout(() => {
       if (mapRef.current) {
         setMapRef(mapRef.current)
       }
     }, 200);
-  }, [])
+  })
 
   return (
     <div className="map-display__scrollable">
