@@ -29,17 +29,17 @@ const MapDisplay = ({ width, height, currentIcon }) => {
     setPopup(null)
   }
   useEffect(() => {
-    if (hiddenLayers) {
-      const visibleLayers = defaultLayers.filter(layer => !hiddenLayers.includes(layer.id))
-      const style = { ...defaultMapStyle, layers: visibleLayers }
-      setMapStyle(style)
-    }
+    // if (hiddenLayers) {
+    //   const visibleLayers = defaultLayers.filter(layer => !hiddenLayers.includes(layer.id))
+    //   const style = { ...defaultMapStyle, layers: visibleLayers }
+    //   setMapStyle(style)
+    // }
     setTimeout(() => {
       if (mapRef.current) {
         setMapRef(mapRef.current)
       }
     }, 200);
-  }, [hiddenLayers])
+  }, [])
 
   return (
     <div className="map-display__scrollable">

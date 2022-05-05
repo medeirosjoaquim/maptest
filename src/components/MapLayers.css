@@ -5,3 +5,8 @@
 .layer__item:hover {
   background-color: #aaa;
 }
+
+.toggle__visibility__btn {
+  width: 120px;
+  margin: 8px;
+}
